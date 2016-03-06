@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +78,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\Backend.csproj">
+      <Project>{4d22c89a-0137-4b29-a0c9-8df0b94b04c6}</Project>
+      <Name>Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicOLA\LogicOLA.csproj">
+      <Project>{66369224-4546-4c02-b184-a667e2ac8479}</Project>
+      <Name>LogicOLA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicPersonen\LogicPersonen.csproj">
+      <Project>{869ab147-31d3-4fd1-bda7-3d2b0acb132e}</Project>
+      <Name>LogicPersonen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

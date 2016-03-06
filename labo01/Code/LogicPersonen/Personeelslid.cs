@@ -15,14 +15,16 @@ namespace LogicPersonen
 
         }
 
-        public Personeelslid(string personeelsnummer)
+        public Personeelslid(string naam, string voornaam, string personeelsnummer)
         {
+            this.naam = naam;
+            this.voornaam = voornaam;
             this.personeelsnummer = personeelsnummer;
         }
 
         public override string ToString()
         {
-            return "[" + this.personeelsnummer + "] " + naam + " " + voornaam;
+            return "[" + this.personeelsnummer + "] " + this.naam + " " + this.voornaam;
         }
     }
 }

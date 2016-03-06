@@ -17,8 +17,11 @@ namespace LogicPersonen
 
         }
 
-        public Docent(List<OLA> olas)
+        public Docent(string naam, string voornaam, string personeelsnummer, List<OLA> olas)
         {
+            this.naam = naam;
+            this.voornaam = voornaam;
+            this.personeelsnummer = personeelsnummer;
             this.olas = olas;
         }
 
