@@ -1,4 +1,5 @@
 ﻿using Backend;
+using IBackend;
 using LogicOLA;
 using LogicPersonen;
 using System;
@@ -16,7 +17,7 @@ namespace StudentenAdministratie
     public partial class Form1 : Form
     {
         //DBGet
-        DBGet dbget = new DBGet();
+        IDBGet dbget = new DBGet();
         //Docenten
         private Docent[] docenten;
 
@@ -40,14 +41,14 @@ namespace StudentenAdministratie
             int index = comboBoxDocenten.SelectedIndex;
 
             //Get OLAS
-            OLA[] olas = dbget.getOLAs(docenten[index]);
+            OLA[] olas = dbget.GetOLAs(docenten[index]);
 
             //Sort array
             Array.Sort(olas);
 
             for (int i = 0; i < olas.Length; i++)
             {
-                listBoxOLAs.Items.Add(olas[i]);
+                listBoxOLAs.Items.Add(olas[i].ToString());
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using LogicOLA;
+﻿using IBackend;
+using LogicOLA;
 using LogicPersonen;
 using MySql.Data.MySqlClient;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Backend
 {
-    public class DBGet
+    public class DBGet : IDBGet
     {
         //Connection
         private MySqlConnection conn = new MySqlConnection("Data Source=127.0.0.1;uid=root;pwd=Azerty123;database=db_labo01");
@@ -56,7 +57,7 @@ namespace Backend
             return docenten;
         }
 
-        public OLA[] getOLAs(Docent docent)
+        public OLA[] GetOLAs(Docent docent)
         {
             //Stacks to store info;
             Stack<string> codes = new Stack<string>();

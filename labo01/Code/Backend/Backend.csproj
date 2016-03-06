@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IBackend\IBackend.csproj">
+      <Project>{f10ddb70-504c-46c0-ab90-e2c434d6bbf9}</Project>
+      <Name>IBackend</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogicOLA\LogicOLA.csproj">
       <Project>{66369224-4546-4c02-b184-a667e2ac8479}</Project>
       <Name>LogicOLA</Name>
