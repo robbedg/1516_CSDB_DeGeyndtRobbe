@@ -14,7 +14,27 @@ namespace Backend
     public class DBGet : IDBGet
     {
         //Connection
-        private MySqlConnection conn = new MySqlConnection("Data Source=127.0.0.1;uid=root;pwd=Azerty123;database=db_labo01");
+        private MySqlConnection conn;
+
+        //Constructor
+        public DBGet()
+        {
+            //Connection with remote MySQL server (Odisee Campus Ghent Only)
+            conn = new MySqlConnection("Data Source=31.220.20.207;uid=u226756641_adm01;pwd=Azerty123;database=u226756641_lab01");
+            
+            try
+            {
+                //Try connection with remote server
+                conn.Open();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                //If connection fails use local MySQL server
+                conn = new MySqlConnection("Data Source=127.0.0.1;uid=root;pwd=Azerty123;database=db_labo01");
+            }
+        }
+
 
         public List<Docent> GetDocenten()
         {
@@ -70,11 +90,11 @@ namespace Backend
             DataSet dsOLAs = new DataSet();
             
             //Set command
-            MySqlCommand cmd = new MySqlCommand("SELECT OLAs.* FROM OLAs" +
-                " INNER JOIN docenten_has_OLAs" +
-                " ON OLAs.code = docenten_has_OLAs.OLAs_code" +
+            MySqlCommand cmd = new MySqlCommand("SELECT olas.* FROM olas" +
+                " INNER JOIN docenten_has_olas" +
+                " ON olas.code = docenten_has_olas.olas_code" +
                 " INNER JOIN docenten" +
-                " ON docenten_has_OLAs.personeelsnummer = docenten.personeelsnummer" +
+                " ON docenten_has_olas.personeelsnummer = docenten.personeelsnummer" +
                 " WHERE docenten.personeelsnummer = @Personeelsnummer", conn);
 
             //Set parameters
