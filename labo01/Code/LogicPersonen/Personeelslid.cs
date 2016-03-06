@@ -8,23 +8,23 @@ namespace LogicPersonen
 {
     public abstract class Personeelslid : Persoon
     {
-        protected string personeelsnummer;
+        protected string _personeelsnummer;
 
-        public Personeelslid()
+        //get personeelsnummer
+        public string personeelsnummer
         {
-
+            get { return _personeelsnummer; }
         }
 
+        //empty constructor
+        public Personeelslid() { }
+
+        //constructor
         public Personeelslid(string naam, string voornaam, string personeelsnummer)
         {
             this.naam = naam;
             this.voornaam = voornaam;
-            this.personeelsnummer = personeelsnummer;
-        }
-
-        public override string ToString()
-        {
-            return "[" + this.personeelsnummer + "] " + this.naam + " " + this.voornaam;
+            this._personeelsnummer = personeelsnummer;
         }
     }
 }

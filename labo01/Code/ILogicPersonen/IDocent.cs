@@ -9,7 +9,8 @@ namespace ILogicPersonen
 {
     public interface IDocent
     {
-        string ToString();
+        string personeelsnummer { get; }
         void VoegOLAsToe(List<OLA> olas);
+        string ToString();
     }
 }

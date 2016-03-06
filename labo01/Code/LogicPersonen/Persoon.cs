@@ -11,17 +11,17 @@ namespace LogicPersonen
         protected string naam;
         protected string voornaam;
 
-        public Persoon()
-        {
+        //empty constructor
+        public Persoon() {}
 
-        }
-
+        //Constructor
         public Persoon(string naam, string voornaam)
         {
             this.naam = naam;
             this.voornaam = voornaam;
         }
         
+        //Persoon To String
         public override string ToString()
         {
             return naam + " " + voornaam;

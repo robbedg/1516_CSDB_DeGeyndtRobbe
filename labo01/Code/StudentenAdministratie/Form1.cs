@@ -28,10 +28,10 @@ namespace StudentenAdministratie
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            docenten = dbget.GetDocenten();
+            docenten = dbget.GetDocenten().ToArray();
             for (int i = 0; i < docenten.Length; i++)
             {
-                comboBoxDocenten.Items.Add(docenten[i].ToString().Substring(11));
+                comboBoxDocenten.Items.Add(docenten[i].ToString());
             }
         }
 
@@ -41,7 +41,7 @@ namespace StudentenAdministratie
             int index = comboBoxDocenten.SelectedIndex;
 
             //Get OLAS
-            OLA[] olas = dbget.GetOLAs(docenten[index]);
+            OLA[] olas = dbget.GetOLAs(docenten[index]).ToArray();
 
             //Sort array
             Array.Sort(olas);

@@ -8,6 +8,7 @@ namespace ILogicOLA
 {
     public interface IOLA
     {
+        string code { get; }
         int CompareTo(Object obj);
         bool Equals(Object obj);
         string ToString();

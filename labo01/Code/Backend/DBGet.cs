@@ -16,7 +16,7 @@ namespace Backend
         //Connection
         private MySqlConnection conn = new MySqlConnection("Data Source=127.0.0.1;uid=root;pwd=Azerty123;database=db_labo01");
 
-        public Docent[] GetDocenten()
+        public List<Docent> GetDocenten()
         {
             //Stacks to store info
             Stack<string> personeelsnummer = new Stack<string>();
@@ -46,18 +46,20 @@ namespace Backend
             }
 
             //new objects
+            List<Docent> docenten = new List<Docent>();
+
+            //Store in list
             int count = personeelsnummer.Count;
-            Docent[] docenten = new Docent[count];
-            
             for (int i = 0; i < count; i++)
             {
-                docenten[i] = new Docent(naam.Pop(), voornaam.Pop(), personeelsnummer.Pop(), new List<OLA>());
+                docenten.Add(new Docent(naam.Pop(), voornaam.Pop(), personeelsnummer.Pop(), new List<OLA>()));
             }
 
+            //return List
             return docenten;
         }
 
-        public OLA[] GetOLAs(Docent docent)
+        public List<OLA> GetOLAs(Docent docent)
         {
             //Stacks to store info;
             Stack<string> codes = new Stack<string>();
@@ -66,9 +68,6 @@ namespace Backend
 
             //New DataSet
             DataSet dsOLAs = new DataSet();
-
-            //Personeelsnummer
-            string personeelsnummer = docent.ToString().Substring(1, 8);
             
             //Set command
             MySqlCommand cmd = new MySqlCommand("SELECT OLAs.* FROM OLAs" +
@@ -79,7 +78,7 @@ namespace Backend
                 " WHERE docenten.personeelsnummer = @Personeelsnummer", conn);
 
             //Set parameters
-            MySqlParameter param = new MySqlParameter("@Personeelsnummer", personeelsnummer);
+            MySqlParameter param = new MySqlParameter("@Personeelsnummer", docent.personeelsnummer);
             cmd.Parameters.Add(param);
 
             //New DataAdapter
@@ -103,14 +102,19 @@ namespace Backend
             }
 
             //new objects
-            int count = codes.Count;
-            OLA[] olas = new OLA[count];
+            List<OLA> olas = new List<OLA>();
 
+            //Store in list
+            int count = codes.Count;
             for (int i = 0; i < count; i++)
             {
-                olas[i] = new OLA(codes.Pop(), naam.Pop(), stp.Pop());
+                olas.Add(new OLA(codes.Pop(), naam.Pop(), stp.Pop()));
             }
 
+            //Add olas to Docent object
+            docent.VoegOLAsToe(olas);
+
+            //Return list
             return olas;
         }
     }

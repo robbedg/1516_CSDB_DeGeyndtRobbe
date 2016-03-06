@@ -10,7 +10,7 @@ namespace IBackend
 {
     public interface IDBGet
     {
-        Docent[] GetDocenten();
-        OLA[] GetOLAs(Docent docent);
+        List<Docent> GetDocenten();
+        List<OLA> GetOLAs(Docent docent);
     }
 }
