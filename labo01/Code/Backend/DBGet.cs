@@ -81,6 +81,12 @@ namespace Backend
 
         public List<OLA> GetOLAs(Docent docent)
         {
+            //When already available don't use database.
+            if (docent.olas.Count > 0)
+            {
+                return docent.olas;
+            }
+
             //Stacks to store info;
             Stack<string> codes = new Stack<string>();
             Stack<string> naam = new Stack<string>();

@@ -11,7 +11,13 @@ namespace LogicPersonen
     public class Docent : Personeelslid, IDocent
     {
         //List of olas
-        private List<OLA> olas = new List<OLA>();
+        private List<OLA> _olas = new List<OLA>();
+
+        //get olas
+        public List<OLA> olas
+        {
+            get { return _olas; }
+        }
 
         //Empty constructor
         public Docent() {}
@@ -30,15 +36,15 @@ namespace LogicPersonen
             this.naam = naam;
             this.voornaam = voornaam;
             this._personeelsnummer = personeelsnummer;
-            this.olas = olas;
+            this._olas = olas;
         }
 
         //Add OLA-list
         public void VoegOLAsToe(List<OLA> olas)
         {
             //Only copy new items.
-            List<OLA> cobined = new List<OLA>(this.olas.Union(olas).ToList());
-            this.olas = cobined;
+            List<OLA> cobined = new List<OLA>(this._olas.Union(olas).ToList());
+            this._olas = cobined;
         }
     }
 }
