@@ -14,9 +14,13 @@ namespace GUI
     public partial class Form1 : Form
     {
         GetInfo info = new GetInfo();
+        DataTable artikelen;
+
         public Form1()
         {
             InitializeComponent();
+            artikelen = info.Artikelen();
+            dataGridView1.DataSource = artikelen;
         }
 
         private void chkSproc_Click(object sender, EventArgs e)
@@ -29,6 +33,14 @@ namespace GUI
         {
             listBox2.Items.Clear();
             listBox2.Items.AddRange(info.Classic());
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CommitEdit(new DataGridViewDataErrorContexts());
+            artikelen = (DataTable)dataGridView1.DataSource;
+            artikelen.AcceptChanges();
+            info.UpdateArtikelen(artikelen);
         }
     }
 }

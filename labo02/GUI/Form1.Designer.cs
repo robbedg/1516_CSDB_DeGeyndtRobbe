@@ -89,6 +89,7 @@
             this.update.TabIndex = 5;
             this.update.Text = "update";
             this.update.UseVisualStyleBackColor = true;
+            this.update.Click += new System.EventHandler(this.update_Click);
             // 
             // Form1
             // 

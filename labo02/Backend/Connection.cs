@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace Backend
 {
@@ -13,6 +14,7 @@ namespace Backend
     {
         private DbProviderFactory factory { get; set; }
         private DbConnection connection { get; set; }
+        private DbDataAdapter workAdapter { get; set; }
 
         public Connection()
         {
@@ -37,6 +39,22 @@ namespace Backend
             }
             connection.Close();
             return result;
+        }
+
+        public DataTable DataGrid()
+        {
+            DataTable targetTable = new DataTable();
+
+            workAdapter = new MySqlDataAdapter("SELECT * FROM artikelen ORDER BY artikel_id", connection.ConnectionString);
+
+            workAdapter.Fill(targetTable);
+
+            return targetTable;
+        }
+
+        public void UpdateGrid(DataTable input)
+        {
+            workAdapter.Update(input);
         }
     }
 }

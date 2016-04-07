@@ -1,6 +1,7 @@
 ﻿using Backend;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,16 @@ namespace Logic
             }
 
             return ToSringArray(input);
+        }
+
+        public DataTable Artikelen()
+        {
+            return connection.DataGrid();
+        }
+
+        public void UpdateArtikelen(DataTable input)
+        {
+            connection.UpdateGrid(input);
         }
 
         private string[] ToSringArray(Dictionary<int, int> input)
