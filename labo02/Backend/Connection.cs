@@ -35,6 +35,7 @@ namespace Backend
             {
                 result.Add(Int32.Parse(reader[0].ToString()), Int32.Parse(reader[1].ToString()));
             }
+            connection.Close();
             return result;
         }
     }
