@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `artikelen` (
 --
 
 INSERT INTO `artikelen` (`artikel_id`, `beschr`, `voorraad`, `eenheid`, `prijs`) VALUES
-(1, 'bord 26cm', 19, 'stuk', '3.50'),
+(1, 'bord 26cm', 20, 'stuk', '3.50'),
 (2, 'bord 31cm', 20, 'stuk', '4.20'),
 (3, 'bordje 22cm', 20, 'stuk', '2.50'),
 (4, 'bierglas 26cl', 12, 'set van 2', '7.50'),
