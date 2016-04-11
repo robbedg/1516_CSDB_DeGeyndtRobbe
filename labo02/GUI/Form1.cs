@@ -14,13 +14,13 @@ namespace GUI
     public partial class Form1 : Form
     {
         GetInfo info = new GetInfo();
-        DataTable artikelen;
+        DataSet artikelen;
 
         public Form1()
         {
             InitializeComponent();
             artikelen = info.Artikelen();
-            dataGridView1.DataSource = artikelen;
+            dataGridView1.DataSource = artikelen.Tables[0];
         }
 
         private void chkSproc_Click(object sender, EventArgs e)
@@ -38,9 +38,10 @@ namespace GUI
         private void update_Click(object sender, EventArgs e)
         {
             dataGridView1.CommitEdit(new DataGridViewDataErrorContexts());
-            artikelen = (DataTable)dataGridView1.DataSource;
-            artikelen.AcceptChanges();
-            info.UpdateArtikelen(artikelen);
+            //artikelen.Tables = (DataSet)dataGridView1.DataSource;
+            //artikelen.AcceptChanges();
+            info.UpdateArtikelen();
+            dataGridView1.DataSource = artikelen.Tables[0];
         }
     }
 }

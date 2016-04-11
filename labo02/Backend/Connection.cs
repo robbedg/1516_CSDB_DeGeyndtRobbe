@@ -15,12 +15,15 @@ namespace Backend
         private DbProviderFactory factory { get; set; }
         private DbConnection connection { get; set; }
         private DbDataAdapter workAdapter { get; set; }
+        private DbCommandBuilder builder { get; set; }
+
+        public DataSet dataSet { get; set; }
 
         public Connection()
         {
             factory = DbProviderFactories.GetFactory("MySql.Data.MySqlClient");
             connection = factory.CreateConnection();
-            connection.ConnectionString = "SERVER=127.0.0.1; DATABASE=postorder; UID=root; PASSWORD=Azerty123";
+            connection.ConnectionString = "Database=acsm_f4ebbffefd9d617;Data Source=eu-cdbr-azure-west-d.cloudapp.net;User Id=be47445ebed6c5;Password=e3104c4f";
         }
 
         public Dictionary<int, int> Command(String queryString)
@@ -41,20 +44,25 @@ namespace Backend
             return result;
         }
 
-        public DataTable DataGrid()
+        public void GetDataGrid()
         {
-            DataTable targetTable = new DataTable();
-
-            workAdapter = new MySqlDataAdapter("SELECT * FROM artikelen ORDER BY artikel_id", connection.ConnectionString);
-
-            workAdapter.Fill(targetTable);
-
-            return targetTable;
+            using(connection)
+            {
+                workAdapter = new MySqlDataAdapter();
+                workAdapter.SelectCommand = new MySqlCommand("SELECT * FROM artikelen", (MySqlConnection)connection);
+                builder = new MySqlCommandBuilder((MySqlDataAdapter)workAdapter);
+                dataSet = new DataSet();
+                workAdapter.Fill(dataSet);
+            }
         }
 
-        public void UpdateGrid(DataTable input)
+        public void UpdateGrid()
         {
-            workAdapter.Update(input);
+            using(connection)
+            {
+                builder.GetUpdateCommand();
+                workAdapter.Update(dataSet);
+            }
         }
     }
 }

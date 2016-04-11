@@ -43,14 +43,15 @@ namespace Logic
             return ToSringArray(input);
         }
 
-        public DataTable Artikelen()
+        public DataSet Artikelen()
         {
-            return connection.DataGrid();
+            connection.GetDataGrid();
+            return connection.dataSet;
         }
 
-        public void UpdateArtikelen(DataTable input)
+        public void UpdateArtikelen()
         {
-            connection.UpdateGrid(input);
+            connection.UpdateGrid();
         }
 
         private string[] ToSringArray(Dictionary<int, int> input)
