@@ -65,6 +65,7 @@ namespace Backend
 
                 workAdapter = factory.CreateDataAdapter();
                 workAdapter.SelectCommand = command;
+                workAdapter.AcceptChangesDuringUpdate = true;
 
                 builder = factory.CreateCommandBuilder();
                 builder.DataAdapter = workAdapter;
