@@ -6,26 +6,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
-using MySql.Data.MySqlClient;
 
 namespace Backend
 {
     public class Connection
     {
+        //Factory
         private DbProviderFactory factory { get; set; }
+        //Connection
         private DbConnection connection { get; set; }
+        //DataAdapter
         private DbDataAdapter workAdapter { get; set; }
+        //Command buider
         private DbCommandBuilder builder { get; set; }
-
+        //DataSet
         public DataSet dataSet { get; set; }
 
-        public Connection()
+        //Constructor
+        public Connection(string name)
         {
-            factory = DbProviderFactories.GetFactory("MySql.Data.MySqlClient");
+            //Get connection settings
+            ConnectionStringSettings connectionStringSettings = ConfigurationManager.ConnectionStrings[name];
+            //Get factory
+            factory = DbProviderFactories.GetFactory(connectionStringSettings.ProviderName);
+            //Create connection
             connection = factory.CreateConnection();
-            connection.ConnectionString = "Database=acsm_f4ebbffefd9d617;Data Source=eu-cdbr-azure-west-d.cloudapp.net;User Id=be47445ebed6c5;Password=e3104c4f";
+            //Set connection string
+            connection.ConnectionString = connectionStringSettings.ConnectionString;
         }
 
+        //Return results of given query (DataReader)
         public Dictionary<int, int> Command(String queryString)
         {
             Dictionary<int, int> result = new Dictionary<int, int>();
@@ -44,18 +54,27 @@ namespace Backend
             return result;
         }
 
-        public void GetDataGrid()
+        //Return results of given query (DataAdapter)
+        public void GetDataGrid(string queryString)
         {
             using(connection)
-            {
-                workAdapter = new MySqlDataAdapter();
-                workAdapter.SelectCommand = new MySqlCommand("SELECT * FROM artikelen", (MySqlConnection)connection);
-                builder = new MySqlCommandBuilder((MySqlDataAdapter)workAdapter);
+            {   
+                DbCommand command = factory.CreateCommand();
+                command.CommandText = queryString;
+                command.Connection = connection;
+
+                workAdapter = factory.CreateDataAdapter();
+                workAdapter.SelectCommand = command;
+
+                builder = factory.CreateCommandBuilder();
+                builder.DataAdapter = workAdapter;
+
                 dataSet = new DataSet();
                 workAdapter.Fill(dataSet);
             }
         }
 
+        //Update table with changes made
         public void UpdateGrid()
         {
             using(connection)
