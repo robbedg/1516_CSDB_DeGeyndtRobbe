@@ -86,5 +86,17 @@ namespace Logic
                 context.SaveChanges();
             }
         }
+        public void UpdateOLA(string code, OLA newola)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var input = from ola in context.OLAs
+                            where ola.code.Equals(code)
+                            select ola;
+
+                OLA selectedola = (OLA)(input.ToArray<OLA>().Last());
+
+            }
+        }
     }
 }

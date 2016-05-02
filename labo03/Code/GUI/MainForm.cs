@@ -49,5 +49,11 @@ namespace GUI
             OPOForm of = new OPOForm(logic);
             of.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //OLAForm of = new OLAForm(logic);
+            of.Show();
+        }
     }
 }

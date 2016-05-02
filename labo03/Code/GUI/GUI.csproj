@@ -67,6 +67,12 @@
     <Compile Include="NewLecturer.Designer.cs">
       <DependentUpon>NewLecturer.cs</DependentUpon>
     </Compile>
+    <Compile Include="OLAForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OLAForm.Designer.cs">
+      <DependentUpon>OLAForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OPOForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewLecturer.resx">
       <DependentUpon>NewLecturer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OLAForm.resx">
+      <DependentUpon>OLAForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OPOForm.resx">
       <DependentUpon>OPOForm.cs</DependentUpon>
