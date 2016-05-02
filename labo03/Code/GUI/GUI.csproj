@@ -67,6 +67,12 @@
     <Compile Include="NewLecturer.Designer.cs">
       <DependentUpon>NewLecturer.cs</DependentUpon>
     </Compile>
+    <Compile Include="OPOForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPOForm.Designer.cs">
+      <DependentUpon>OPOForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewLecturer.resx">
       <DependentUpon>NewLecturer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPOForm.resx">
+      <DependentUpon>OPOForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,9 +112,17 @@
       <Project>{6A673566-6612-46A7-8991-9229EB957DF0}</Project>
       <Name>Context</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Enum\Enum.csproj">
+      <Project>{914cc397-55e8-4192-8384-4d1d40048ac6}</Project>
+      <Name>Enum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{6ed9cac4-a6f4-487e-b78b-8d588d5fcff4}</Project>
       <Name>Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Objects\Objects.csproj">
+      <Project>{a45bc404-c178-46fa-b1a7-3ab99b0b2f5b}</Project>
+      <Name>Objects</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

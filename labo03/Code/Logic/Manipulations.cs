@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Logic
 {
@@ -57,26 +58,33 @@ namespace Logic
             }
         }
 
-        public string[] GetLecturers()
+        public List<ListViewItem> GetOLAs(Lecturer lecturer)
         {
             using (var context = new DatabaseContext())
             {
-                var output = from lecturer in context.lecturers
-                                             select new { lecturer.firstname, lecturer.lastname };
-                var list = output.ToList();
+                var output = from ola in context.OLAs
+                             where ola.lecturers.Contains(lecturer)
+                             select ola;
+                
+                List<ListViewItem> listview = new List<ListViewItem>();
 
-                string[] outlist = new string[list.Count];
-                for (int i = 0; i < list.Count; i++)
+                foreach (var item in output)
                 {
-                    outlist[i] = list[i].firstname + " " + list[i].lastname;
+                    string[] olaStringArray = new string[] { item.code, item.name, item.opo.ToString(), item.stp.ToString() };
+                    listview.Add(new ListViewItem(olaStringArray));
                 }
-                return outlist;
+                return listview;
             }
         }
 
-        public void GetOLAs(string nummer)
+        public void AddOPO(OPO opo)
         {
-
+            using (var context = new DatabaseContext())
+            {
+                opo.coordinator = null;
+                context.OPOs.Add(opo);
+                context.SaveChanges();
+            }
         }
     }
 }

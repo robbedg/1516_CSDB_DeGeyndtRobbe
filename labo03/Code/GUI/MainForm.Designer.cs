@@ -31,6 +31,7 @@
             this.LecturerBox = new System.Windows.Forms.ComboBox();
             this.OLAsView = new System.Windows.Forms.ListView();
             this.addLecturer = new System.Windows.Forms.Button();
+            this.buttonNewOPO = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LecturerBox
@@ -61,16 +62,27 @@
             this.addLecturer.UseVisualStyleBackColor = true;
             this.addLecturer.Click += new System.EventHandler(this.addLecturer_Click);
             // 
+            // buttonNewOPO
+            // 
+            this.buttonNewOPO.Location = new System.Drawing.Point(394, 39);
+            this.buttonNewOPO.Name = "buttonNewOPO";
+            this.buttonNewOPO.Size = new System.Drawing.Size(94, 23);
+            this.buttonNewOPO.TabIndex = 3;
+            this.buttonNewOPO.Text = "Nieuwe OPO";
+            this.buttonNewOPO.UseVisualStyleBackColor = true;
+            this.buttonNewOPO.Click += new System.EventHandler(this.buttonNewOPO_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 261);
+            this.Controls.Add(this.buttonNewOPO);
             this.Controls.Add(this.addLecturer);
             this.Controls.Add(this.OLAsView);
             this.Controls.Add(this.LecturerBox);
             this.Name = "MainForm";
-            this.Text = "Hoofdvenster";
+            this.Text = "  ";
             this.ResumeLayout(false);
 
         }
@@ -80,6 +92,7 @@
         private System.Windows.Forms.ComboBox LecturerBox;
         private System.Windows.Forms.ListView OLAsView;
         private System.Windows.Forms.Button addLecturer;
+        private System.Windows.Forms.Button buttonNewOPO;
     }
 }
 

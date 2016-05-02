@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace GUI
         public void Reload()
         {
             LecturerBox.Items.Clear();
-            LecturerBox.Items.AddRange(logic.GetLecturers());
+            LecturerBox.Items.AddRange(logic.lecturers.ToArray<Lecturer>());
         }
 
         private void addLecturer_Click(object sender, EventArgs e)
@@ -35,12 +36,18 @@ namespace GUI
 
         private void LecturerBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            OLAsView.Items.AddRange(logic.GetOLAs((Lecturer)LecturerBox.SelectedValue).ToArray<ListViewItem>());
         }
 
         private void LecturerBox_MouseClick(object sender, MouseEventArgs e)
         {
             Reload();
+        }
+
+        private void buttonNewOPO_Click(object sender, EventArgs e)
+        {
+            OPOForm of = new OPOForm(logic);
+            of.Show();
         }
     }
 }

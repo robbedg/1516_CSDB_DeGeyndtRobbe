@@ -26,5 +26,10 @@ namespace Objects
             this.firstname = firstname;
             this.lastname = lastname;
         }
+
+        public override string ToString()
+        {
+            return lastname + " " + firstname;
+        }
     }
 }

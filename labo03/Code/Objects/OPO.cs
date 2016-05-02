@@ -34,5 +34,10 @@ namespace Objects
             this.fase = fase;
             this.sem = sem;
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }
