@@ -52,7 +52,7 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //OLAForm of = new OLAForm(logic);
+            OLAForm of = new OLAForm(logic, new OLA());
             of.Show();
         }
     }
