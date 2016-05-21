@@ -213,6 +213,7 @@
             this.bCoursesStudent.TabIndex = 2;
             this.bCoursesStudent.Text = "Assign Course To Student";
             this.bCoursesStudent.UseVisualStyleBackColor = true;
+            this.bCoursesStudent.Click += new System.EventHandler(this.bCoursesStudent_Click);
             // 
             // Overview
             // 
@@ -223,6 +224,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Overview";
             this.Text = "Overview";
             this.groupBox1.ResumeLayout(false);

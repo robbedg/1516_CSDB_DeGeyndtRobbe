@@ -67,7 +67,6 @@ namespace ISP_app_with_MongoDB
                 {
                     ErrorMessage("Something went wrong.\nPlease try again.");
                 }
-                this.Close();
             }
             else if (Course != null)
             {
@@ -80,7 +79,6 @@ namespace ISP_app_with_MongoDB
                 {
                     ErrorMessage("Something went wrong.\nPlease try again.");
                 }
-                this.Close();
             }
             else if (ObjectName.Equals("Student"))
             {
@@ -91,9 +89,8 @@ namespace ISP_app_with_MongoDB
                 }
                 catch
                 {
-                    ErrorMessage("Something went wrong.\nPossibly id [" + Student.Id + "] is already used.\nPlease try again.");
+                    ErrorMessage("Something went wrong.\nPossibly the chosen id is already used or invalid.\nPlease try again.");
                 }
-                this.Close();
             }
             else if (ObjectName.Equals("Course"))
             {
@@ -104,10 +101,34 @@ namespace ISP_app_with_MongoDB
                 }
                 catch
                 {
-                    ErrorMessage("Something went wrong.\nPossibly id [" + Course.Id + "] is already used.\nPlease try again.");
+                    ErrorMessage("Something went wrong.\nPossibly the chosen id is already used or invalid.\nPlease try again.");
                 }
-                this.Close();
             }
+            this.Close();
+        }
+
+        private void bDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Student != null)
+                {
+                    Logic.DeleteStudent(Student);
+                }
+                else if (Course != null)
+                {
+                    Logic.DeleteCourse(Course);
+                }
+                else
+                {
+                    throw new Exception("No object.");
+                }
+            }
+            catch
+            {
+                ErrorMessage("Something went wrong.\nPlease try again.");
+            }
+            this.Close();
         }
 
         private void ErrorMessage(string message)

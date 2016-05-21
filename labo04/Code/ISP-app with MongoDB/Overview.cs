@@ -89,6 +89,12 @@ namespace ISP_app_with_MongoDB
             }
         }
 
+        private void bCoursesStudent_Click(object sender, EventArgs e)
+        {
+            Assign assign = new Assign(Logic);
+            assign.Show();
+        }
+
         private void ErrorMessage(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

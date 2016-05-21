@@ -21,5 +21,10 @@ namespace Objects
             this.Name = name;
             this.Year = year;
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

@@ -33,5 +33,10 @@ namespace Objects
             this.Year = year;
             this.Courses = courses;
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

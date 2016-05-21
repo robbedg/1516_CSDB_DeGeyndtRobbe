@@ -101,5 +101,43 @@ namespace Logic
             var update = Builders<Course>.Update.Set("Name", course.Name).Set("Year", course.Year);
             MongoDBConnection.Courses.UpdateOne(filter, update);
         }
+
+        public void DeleteStudent(Student student)
+        {
+            var filter = Builders<Student>.Filter.Eq("Id", student.Id);
+            MongoDBConnection.Students.DeleteOne(filter);
+        }
+
+        public void DeleteCourse(Course course)
+        {
+            var filter = Builders<Course>.Filter.Eq("Id", course.Id);
+            MongoDBConnection.Courses.DeleteOne(filter);
+        }
+
+        public List<Student> GetAllStudents()
+        {
+            return MongoDBConnection.Students.AsQueryable().ToList();
+        }
+
+        public List<Course> GetAllCourses()
+        {
+            return MongoDBConnection.Courses.AsQueryable().ToList();
+        }
+
+        public List<Course> GetCoursesOnStudent(Student student)
+        {
+            List<int> courseIds = new List<int>();
+            List<Course> courses = new List<Course>();
+
+            foreach (Course x in student.Courses) courseIds.Add(x.Id);
+
+            var filterdCourses = from course in MongoDBConnection.Courses.AsQueryable()
+                                 where courseIds.Contains(course.Id)
+                                 select course;
+
+            foreach (Course x in filterdCourses) courses.Add(x);
+
+            return courses;
+        }
     }
 }
