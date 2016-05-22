@@ -15,33 +15,45 @@ namespace ISP_app_with_MongoDB
     public partial class Assign : Form
     {
         private Manipulations Logic { get; set; }
-        private Student selectedStudent { get; set; }
+        private Student SelectedStudent { get; set; }
+        private List<Course> Courses { get; set; }
         public Assign(Manipulations logic)
         {
             InitializeComponent();
             this.Logic = logic;
             cbStudent.Items.AddRange(Logic.GetAllStudents().OrderBy(student => student.Name).ToArray());
+            Courses = Logic.GetAllCourses();
         }
 
         private void clbCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SelectedStudent.Courses.Clear();
             
+            foreach (Course x in clbCourses.CheckedItems)
+            {
+                SelectedStudent.Courses.Add(x);
+            }
+
+            Logic.UpdateStudent(SelectedStudent);
         }
 
         private void cbStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
             clbCourses.Items.Clear();
-            clbCourses.Items.AddRange(Logic.GetAllCourses().OrderBy(student => student.Name).ToArray());
+            clbCourses.Items.AddRange(Courses.OrderBy(course => course.Name).ToArray());
 
-            selectedStudent = (Student)cbStudent.SelectedItem;
-            List<Course> filtered = Logic.GetCoursesOnStudent(selectedStudent);
+            SelectedStudent = (Student)cbStudent.SelectedItem;
+            List<Course> filtered = Logic.GetCoursesOnStudent(SelectedStudent);
 
-            foreach (Course x in clbCourses.Items)
+            foreach (Course x in Courses)
             {
-                if (filtered.Contains(x))
+                foreach (Course y in filtered)
                 {
-                    int index = clbCourses.Items.IndexOf(x);
-                    clbCourses.SetItemChecked(index, true);
+                    if (x.Id == y.Id)
+                    {
+                        int index = clbCourses.Items.IndexOf(x);
+                        clbCourses.SetItemChecked(index, true);
+                    }
                 }
             }
         }

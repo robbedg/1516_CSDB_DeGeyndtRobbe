@@ -18,14 +18,11 @@ namespace Logic
             MongoDBConnection = new Connection("mongodb://student:Azerty123@ds011382.mlab.com:11382/csharpdblab04");
         }
 
+        #region studenten
+
         public void AddStudent(Student student)
         {
             MongoDBConnection.Students.InsertOne(student);
-        }
-
-        public void AddCourse(Course course)
-        {
-            MongoDBConnection.Courses.InsertOne(course);
         }
 
         public Student GetStudentOnName(string name)
@@ -58,6 +55,33 @@ namespace Logic
             return studenten.First();
         }
 
+        public void UpdateStudent(Student student)
+        {
+            var filter = Builders<Student>.Filter.Eq("Id", student.Id);
+            var update = Builders<Student>.Update.Set("Name", student.Name).Set("Year", student.Year).Set("Courses", student.Courses);
+            MongoDBConnection.Students.UpdateOne(filter, update);
+        }
+
+        public void DeleteStudent(Student student)
+        {
+            var filter = Builders<Student>.Filter.Eq("Id", student.Id);
+            MongoDBConnection.Students.DeleteOne(filter);
+        }
+
+        public List<Student> GetAllStudents()
+        {
+            return MongoDBConnection.Students.AsQueryable().ToList();
+        }
+
+        #endregion
+
+        #region courses
+
+        public void AddCourse(Course course)
+        {
+            MongoDBConnection.Courses.InsertOne(course);
+        }
+
         public Course GetCourseOnName(string name)
         {
             List<Course> courses = new List<Course>();
@@ -88,13 +112,6 @@ namespace Logic
             return courses.First();
         }
 
-        public void UpdateStudent(Student student)
-        {
-            var filter = Builders<Student>.Filter.Eq("Id", student.Id);
-            var update = Builders<Student>.Update.Set("Name", student.Name).Set("Year", student.Year);
-            MongoDBConnection.Students.UpdateOne(filter, update);
-        }
-
         public void UpdateCourse(Course course)
         {
             var filter = Builders<Course>.Filter.Eq("Id", course.Id);
@@ -102,21 +119,11 @@ namespace Logic
             MongoDBConnection.Courses.UpdateOne(filter, update);
         }
 
-        public void DeleteStudent(Student student)
-        {
-            var filter = Builders<Student>.Filter.Eq("Id", student.Id);
-            MongoDBConnection.Students.DeleteOne(filter);
-        }
 
         public void DeleteCourse(Course course)
         {
             var filter = Builders<Course>.Filter.Eq("Id", course.Id);
             MongoDBConnection.Courses.DeleteOne(filter);
-        }
-
-        public List<Student> GetAllStudents()
-        {
-            return MongoDBConnection.Students.AsQueryable().ToList();
         }
 
         public List<Course> GetAllCourses()
@@ -139,5 +146,7 @@ namespace Logic
 
             return courses;
         }
+
+        #endregion
     }
 }
