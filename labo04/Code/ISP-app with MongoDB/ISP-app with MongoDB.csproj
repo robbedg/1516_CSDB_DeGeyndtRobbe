@@ -140,16 +140,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Logic\Logic.csproj">
-      <Project>{E4EC95E6-0A77-475B-A52C-BE2C8528F473}</Project>
-      <Name>Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="Objects\Objects.csproj">
-      <Project>{D73F5A26-F785-4E90-A759-D0759EDC041D}</Project>
-      <Name>Objects</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -160,6 +150,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{E4EC95E6-0A77-475B-A52C-BE2C8528F473}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Objects\Objects.csproj">
+      <Project>{D73F5A26-F785-4E90-A759-D0759EDC041D}</Project>
+      <Name>Objects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

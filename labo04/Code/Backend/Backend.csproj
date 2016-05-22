@@ -59,7 +59,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ISP-app with MongoDB\Objects\Objects.csproj">
+    <ProjectReference Include="..\Objects\Objects.csproj">
       <Project>{D73F5A26-F785-4E90-A759-D0759EDC041D}</Project>
       <Name>Objects</Name>
     </ProjectReference>
