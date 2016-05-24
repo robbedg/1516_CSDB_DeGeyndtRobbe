@@ -18,7 +18,8 @@ namespace Logic
             MongoDBConnection = new Connection("mongodb://student:Azerty123@ds011382.mlab.com:11382/csharpdblab04");
         }
 
-        #region studenten
+        //All manipulations regarding students
+        #region students
 
         public void AddStudent(Student student)
         {
@@ -75,6 +76,7 @@ namespace Logic
 
         #endregion
 
+        //All manipulations regarding courses
         #region courses
 
         public void AddCourse(Course course)

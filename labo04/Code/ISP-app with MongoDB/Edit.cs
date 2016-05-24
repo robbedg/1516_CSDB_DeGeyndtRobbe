@@ -54,6 +54,7 @@ namespace ISP_app_with_MongoDB
 
         #endregion
 
+        //Check what needs to be done, create student/course or update student/course
         private void bDone_Click(object sender, EventArgs e)
         {
             if (Student != null)
@@ -107,6 +108,7 @@ namespace ISP_app_with_MongoDB
             this.Close();
         }
 
+        //Delete course or student.
         private void bDelete_Click(object sender, EventArgs e)
         {
             try
@@ -131,6 +133,7 @@ namespace ISP_app_with_MongoDB
             this.Close();
         }
 
+        //Display errormessage
         private void ErrorMessage(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

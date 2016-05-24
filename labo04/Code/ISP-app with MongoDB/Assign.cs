@@ -25,6 +25,7 @@ namespace ISP_app_with_MongoDB
             Courses = Logic.GetAllCourses();
         }
 
+        //Ubdate assignments
         private void clbCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedStudent.Courses.Clear();
@@ -37,6 +38,7 @@ namespace ISP_app_with_MongoDB
             Logic.UpdateStudent(SelectedStudent);
         }
 
+        //Set items checked
         private void cbStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
             clbCourses.Items.Clear();

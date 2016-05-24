@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Backend
 {
+    //Connection with MongoDB
     public class Connection
     {
         private MongoClient Client { get; set; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Objects
 {
+    //Course object
     public class Course
     {
         public int Id { get; set; }

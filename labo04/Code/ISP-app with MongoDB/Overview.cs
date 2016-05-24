@@ -15,6 +15,8 @@ namespace ISP_app_with_MongoDB
     public partial class Overview : Form
     {
         private Manipulations Logic { get; set; }
+
+        //Set events for buttons
         public Overview()
         {
             InitializeComponent();
@@ -95,6 +97,7 @@ namespace ISP_app_with_MongoDB
             assign.Show();
         }
 
+        //Show errormessage
         private void ErrorMessage(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
